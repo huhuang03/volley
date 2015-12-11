@@ -1,27 +1,12 @@
-apply plugin: 'android-library'
+// See build.gradle for an explanation of what this file is.
 
-android {
-    sourceSets {
-        defaultConfig {
-            testPackageName 'com.android.volley.tests'
-        }
+apply plugin: 'com.android.library'
 
-        main {
-            assets.srcDirs       = ['assets']
-            res.srcDirs          = ['res']
-            aidl.srcDirs         = ['src']
-            resources.srcDirs    = ['src']
-            renderscript.srcDirs = ['src']
-            java.srcDirs         = ['src']
-            manifest.srcFile 'AndroidManifest.xml'
-
-        }
-
-        androidTest.setRoot('tests')
-        androidTest.java.srcDirs = ['tests/src']
-    }
-    lintOptions {
-        // TODO: fix errors and reenable.
-        abortOnError false
-    }
+// Check if the android plugin version supports unit testing.
+if (configurations.findByName("testCompile")) {
+  dependencies {
+    testCompile "junit:junit:4.10"
+    testCompile "org.mockito:mockito-core:1.9.5"
+    testCompile "org.robolectric:robolectric:3.0"
+  }
 }
